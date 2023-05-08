@@ -1,0 +1,16 @@
+def fractal_colors(a, root):
+    colored = [[-1 for _ in range(accuracy)] for _ in range(accuracy)]
+    n_roots = len(root)
+    for j in range(accuracy):
+        for k in range(accuracy):
+            z = a[j * accuracy + k]
+            minval, c = abs(z - root[0]), 0
+            for indx, r0 in enumerate(root):
+                if abs(z - r0) < minval:  # è più vicino alla radice
+                    minival = r0
+                    c = indx
+            colored[j][k] = c / n_roots
+    return np.array(colored)
+
+
+col = fractal_colors(mapped, roots)
